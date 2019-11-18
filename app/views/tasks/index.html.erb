@@ -1,0 +1,24 @@
+<h1>My Tasks</h1>
+<ul>
+  <% @tasks.each do |task| %>
+  <li>
+  <label class="done">
+    <input type="checkbox" <%= task.completed ? checked="checked" : checked="unchecked" %>>
+    <%= link_to task.title, task_show_path(task) %>
+  </label>
+  <p><%= link_to 'Delete Task', delete_path(task), method: :delete %></p>
+  </li>
+  <% end %>
+</ul>
+<h2>
+  <%= link_to 'Add a Task', new_path %>
+</h2>
+
+
+<!-- <button onclick="myFunction()">Try it</button>
+
+<script>
+function myFunction() {
+  confirm("Press a button!");
+}
+</script> -->
