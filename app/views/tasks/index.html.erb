@@ -1,24 +1,33 @@
-<h1>My Tasks</h1>
-<ul>
-  <% @tasks.each do |task| %>
-  <li>
-  <label class="done">
-    <input type="checkbox" <%= task.completed ? checked="checked" : checked="unchecked" %>>
-    <%= link_to task.title, task_show_path(task) %>
-  </label>
-  <p><%= link_to 'Delete Task', delete_path(task), method: :delete %></p>
-  </li>
-  <% end %>
-</ul>
-<h2>
-  <%= link_to 'Add a Task', new_path %>
-</h2>
-
-
-<!-- <button onclick="myFunction()">Try it</button>
-
-<script>
-function myFunction() {
-  confirm("Press a button!");
-}
-</script> -->
+<div class="container">
+  <div class="d-flex">
+    <div class="d-flex justify-content-start">
+      <h1>My Tasks</h1>
+    </div>
+    <div class="new-task d-flex justify-content-end">
+      <h2>
+        <%= link_to '<i class="fas fa-plus-circle"></i>'.html_safe, new_task_path, id: 'add-task' %>
+      </h2>
+    </div>
+  </div>
+  <div>
+    <table class="tasks">
+      <tbody>
+        <% @tasks.each do |task| %>
+        <tr>
+          <td>
+          <label class="done">
+            <input type="checkbox" <%= task.completed ? checked="checked" : checked="unchecked" %>>
+          </label>
+          </td>
+          <td>
+            <%= link_to task.title, tasks_path(task) %>
+          </td>
+          <td>
+          <p><%= link_to 'Delete Task', task_path(task), method: :delete %></p>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
