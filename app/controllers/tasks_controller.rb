@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :delete]
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
     @tasks = Task.all
@@ -26,7 +26,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    raise
+    # raise
     @task.destroy
     redirect_to tasks_path
   end
