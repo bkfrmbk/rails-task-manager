@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container page">
   <div class="d-flex">
-    <div class="d-flex justify-content-start">
-      <h1>My Tasks</h1>
+    <div class="d-flex justify-content-start pageHeader">
+      <h1 class="title">My Tasks</h1>
     </div>
     <div class="new-task d-flex justify-content-end">
       <h2>
@@ -12,18 +12,24 @@
   <div>
     <table class="tasks">
       <tbody>
+        <tr>
+          <th>Status</th>
+          <th>Task</th>
+          <th>Options</th>
+        </tr>
         <% @tasks.each do |task| %>
         <tr>
-          <td>
-          <label class="done">
-            <input type="checkbox" <%= task.completed ? checked="checked" : checked="unchecked" %>>
-          </label>
-          </td>
+            <% if task.completed %>
+              <td>Completed</td>
+            <% else %>
+              <td>In Progress</td>
+            <% end %>
           <td>
             <%= link_to task.title, tasks_path(task) %>
           </td>
           <td>
           <p><%= link_to 'Delete Task', task_path(task), method: :delete %></p>
+          <%= link_to 'Edit Task', edit_task_path(task) %>
           </td>
         </tr>
         <% end %>
